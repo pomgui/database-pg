@@ -1,9 +1,9 @@
-# Database generic library
+# PosgreSQL Database library
 
 [![Package Version][package-image]][package-url]
 [![Open Issues][issues-image]][issues-url]
 
-@pomgui/database-mysql is a typescript library that provides an interface to execute the normal operations
+@pomgui/database-pg is a typescript library that provides an interface to execute the normal operations
 with a client [pg](https://www.npmjs.com/package/pg) 
 database driver as connect, start transaction, commit, etc.
 
@@ -12,8 +12,9 @@ database driver as connect, start transaction, commit, etc.
 - All methods return promises.
 - It uses query parameters like `:id` instead of `?`.
 - The parameters understand object's hierarchy, so it understands parameters like `:entry.id`.
-- The returned rows also are preprocessed to return objects if needed (See Usage Example section).
-- It maintains the same interface no matter the database, so it helps with the migration from different databases E.g. MySQL to Firebird or to PostgreSQL and vice versa.
+- The returned rows also are preprocessed to return nested objects if needed (See Usage Example section).
+- It maintains the same interface ([@pomgui/database][base-url]) no matter the database, so it helps with the migration from different databases E.g. MySQL to Firebird or to PostgreSQL and vice versa
+  (See [@pomgui/database-mysql][database-mysql-url] usage example and compare)
 
 ## Installation
 
@@ -78,7 +79,9 @@ This will print:
 
 
 
+[base-url]: https://www.npmjs.com/package/@pomgui/database
 [project-url]: https://github.com/pomgui/database-pg
+[database-mysql-url]: https://www.npmjs.com/package/@pomgui/database-mysql
 [package-image]: https://badge.fury.io/js/@pomgui%2Fdatabase-pg.svg
 [package-url]: https://www.npmjs.com/package/@pomgui/database-pg
 [issues-image]: https://img.shields.io/github/issues/pomgui/database-pg.svg?style=popout

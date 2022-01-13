@@ -12,7 +12,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/pomgui/database.git"
+    "url": "https://github.com/pomgui/database-pg.git"
   },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
