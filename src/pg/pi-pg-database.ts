@@ -5,6 +5,7 @@ import { Logger } from "sitka";
 export class PiPgDatabase extends PiDatabase {
     constructor(private _db: ClientBase) {
         super();
+        this._paramChar = '$';
         this._logger = Logger.getLogger('Pg#' + ((_db as any)._ID || 0));
     }
 
