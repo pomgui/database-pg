@@ -1,6 +1,6 @@
 {
   "name": "@pomgui/database-pg",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Library to handle PostgreSQL database connections allowing named parameters",
   "keywords": [
     "database",
