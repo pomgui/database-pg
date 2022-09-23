@@ -23,4 +23,7 @@ export class PiPgPool implements PiDatabasePool {
         return new PiPgDatabase(db);
     }
 
+    close(): Promise<void> {
+        return this._pool.end();
+    }
 }
