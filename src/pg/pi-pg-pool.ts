@@ -1,6 +1,6 @@
-import { PiDatabasePool } from "@pomgui/database";
-import { Pool, PoolConfig } from "pg";
-import { PiPgDatabase } from "./pi-pg-database";
+import { PiDatabasePool } from '@pomgui/database';
+import { Pool, PoolConfig } from 'pg';
+import { PiPgDatabase } from './pi-pg-database';
 
 
 export class PiPgPool implements PiDatabasePool {
@@ -17,7 +17,7 @@ export class PiPgPool implements PiDatabasePool {
     }
 
     async get(): Promise<PiPgDatabase> {
-        let db = await this._pool.connect();
+        const db = await this._pool.connect();
         if (!(db as any)._ID)
             (db as any)._ID = ++this._ID;
         return new PiPgDatabase(db);
