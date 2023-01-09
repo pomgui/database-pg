@@ -1,6 +1,6 @@
-import { PiDatabase, QueryResult } from "@pomgui/database";
-import { Client, ClientBase, PoolClient } from "pg";
-import { Logger } from "sitka";
+import { PiDatabase, QueryResult } from '@pomgui/database';
+import { Client, ClientBase, PoolClient } from 'pg';
+import { Logger } from 'sitka';
 
 export class PiPgDatabase extends PiDatabase {
     constructor(private _db: ClientBase) {
@@ -19,21 +19,23 @@ export class PiPgDatabase extends PiDatabase {
             case 'number':
                 return value.toString();
             case 'string':
-                return "'" + value.replace(/'/g, "''").replace(/\\/g, '\\\\') + "'";
+                return '\'' + value.replace(/'/g, `''`).replace(/\\/g, '\\\\') + '\'';
         }
 
         if (value instanceof Date) {
             const pad = (n: number, d: number) => ('000' + n.toString()).substr(-d);
-            return "TIMESTAMP '"
+            return `TIMESTAMP '`
                 + value.getFullYear()
                 + '-' + pad(value.getMonth() + 1, 2)
                 + '-' + pad(value.getDate(), 2)
                 + ' ' + pad(value.getHours(), 2)
                 + ':' + pad(value.getMinutes(), 2)
                 + ':' + pad(value.getSeconds(), 2)
-                + '.' + pad(value.getMilliseconds(), 3) + "'";
+                + '.' + pad(value.getMilliseconds(), 3) + '\'';
         }
-        throw new Error('Escape supports only primitive values.');
+
+        // If it reaches this point, treat it as a JSON object
+        return '\'' + JSON.stringify(value).replace(/'/g, `''`).replace(/\\/g, '\\\\') + '\'';
     }
 
     async close(): Promise<void> {
@@ -59,7 +61,7 @@ export class PiPgDatabase extends PiDatabase {
 
     protected async _executeQuery(sql: string, params: any[]): Promise<QueryResult> {
         let result: any = await this._db.query(sql, params);
-        if (result[1] && "affectedRows" in result[1])
+        if (result[1] && 'affectedRows' in result[1])
             // work around when it's a CALL and not a SELECT
             result = result[0];
         return {
@@ -69,4 +71,4 @@ export class PiPgDatabase extends PiDatabase {
             rows: result.rows
         };
     }
-};
+}
