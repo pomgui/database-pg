@@ -11,7 +11,6 @@
     "declaration": true,
     "sourceMap": false,
     "outDir": "dist",
-    "rootDir": "src",
     "strict": true,
     "noImplicitAny": true,
     "strictNullChecks": true,
@@ -25,11 +24,8 @@
     "importHelpers": true
   },
   "include": [
-    "**/*.ts"
+    "src/**/*.ts"
   ],
   "exclude": [
-    "dist",
-    "node_modules",
-    "spec/"
   ]
 }
